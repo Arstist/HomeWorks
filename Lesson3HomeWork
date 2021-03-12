@@ -1,0 +1,97 @@
+//Задание #2
+import java.util.Random;
+import java.util.Scanner;
+
+public class Lesson3_1HomeWork {
+    static String[] hashPaste = {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"};
+
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        Random random = new Random();
+
+        int rRandom = random.nextInt(words.length);
+        String conceived = words[rRandom];
+
+        gameMain(conceived);
+        System.out.println("Вы выйграли! - слово: "+conceived);
+    }
+
+    public static void gameMain(String conceived) {
+        char chek1;
+        char chek2;
+        String answer;
+
+        do {
+            System.out.print("Введите слово ");
+            answer = sc.nextLine();
+            for (int i = 0; i < answer.length(); i++) {
+                chek1 = answer.charAt(i);
+                for (int j = 0; j < conceived.length(); j++) {
+                    chek2 = conceived.charAt(j);
+                    if (chek1 == chek2 && i == j) {
+                        String charToString = Character.toString(chek2);
+                        char temp = chek2;
+                        hashPaste[i] = charToString;
+                        continue;
+                    }
+                }
+            }
+            for (int l = 0; l < hashPaste.length; l++) {
+                System.out.print(hashPaste[l]);
+                hashPaste[l] = "#";
+            }
+            System.out.println();
+        } while (!conceived.equals(answer));
+    }
+} 
+////////////////////////
+// Задание 1.
+import java.util.Random;
+import java.util.Scanner;
+
+public class Lesson3HomeWork {
+    static Random random = new Random();
+    public static void main(String[] args) {
+            Scanner scMain = new Scanner(System.in);
+
+            playLevel(9);
+            scMain.close();
+        }
+
+        private static void playLevel(int range) {
+            int count = 3;
+            System.out.println("Игра: Угадай число");
+            System.out.println("Осталось " +count+" попытки");
+            Scanner sc = new Scanner(System.in);
+            int randomNum = random.nextInt(range);
+            System.out.println("Угадай число от 0 до " + range);
+
+            for (int i = 0; i <= count+1; i++) {
+                System.out.print("Число: ");
+                int inputNumber = sc.nextInt();
+                if (inputNumber == randomNum) {
+                    System.out.println("Ты выйграл");
+                    break;
+                } else if (inputNumber < randomNum) {
+                    System.out.println("Загаданое число больше");
+                } else if (inputNumber > randomNum) {
+                    System.out.println("Загаданое число меньше");
+                }
+                count -=1;
+                System.out.println("Осталось " +count+" попыток");
+            }
+            System.out.println("Начать заного");
+            System.out.println("1 - да / 2 - нет");
+            int yesNo = sc.nextInt();
+            if(yesNo == 1) {
+                playLevel(9);
+                count = 3;
+            } else if(yesNo == 2) {
+                System.out.println("Спасибо за игру");
+            } else {
+                System.out.println("Такого варианта нет.");
+            }
+
+        }
+   }
