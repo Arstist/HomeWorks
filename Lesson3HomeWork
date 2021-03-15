@@ -55,7 +55,7 @@ public class Lesson3HomeWork {
     public static void main(String[] args) {
             Scanner scMain = new Scanner(System.in);
 
-            playLevel(9);
+            playLevel(10);
             scMain.close();
         }
 
@@ -65,7 +65,7 @@ public class Lesson3HomeWork {
             System.out.println("Осталось " +count+" попытки");
             Scanner sc = new Scanner(System.in);
             int randomNum = random.nextInt(range);
-            System.out.println("Угадай число от 0 до " + range);
+            System.out.println("Угадай число от 0 до " + range-1);
 
             for (int i = 0; i <= count+1; i++) {
                 System.out.print("Число: ");
